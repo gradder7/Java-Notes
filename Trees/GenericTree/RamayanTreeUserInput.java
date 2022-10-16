@@ -2,19 +2,41 @@ package Trees.GenericTree;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.Set;
 
 public class RamayanTreeUserInput {
     class Node {
-        String name;
-        ArrayList<Node> children;
+        //class members
+       private String name;
+       private Map<String, Set<Node>> wifeChildrenMap;
+       private boolean isMale;
+        // ArrayList<Node> children;
+        // String wifeName;
 
-        Node(String name) {
+        
+        Node(String name,boolean isMale) {
             this.name = name;
-            children = new ArrayList<>();
+            this.isMale=isMale;
+            // children = new ArrayList<>();
+            this.wifeChildrenMap=new LinkedHashMap<>();
         }
+
+
+        public Map<String, Set<Node>> getWifeChildrenMap() {
+            return wifeChildrenMap;
+        }
+
+
+        public void setWifeChildrenMap(Map<String, Set<Node>> wifeChildrenMap) {
+            this.wifeChildrenMap = wifeChildrenMap;
+        }
+        
     }
 
     public Node buildTreeUserInput() {
@@ -22,12 +44,20 @@ public class RamayanTreeUserInput {
         System.out.println("Enter the name of the first Ancestor ");
         String rootName = sc.nextLine();
         System.out.println("How many wife ancestor have ->");
-        int count =sc.nextInt();
-        for(int i=0;i<count;i++){
-            System.out.println("Enter the "+(i+1)+" wife name");
-            String wifeName= sc.next();
-            rootName+=" + "+wifeName;
+        int count = sc.nextInt();
+        String wifename = "";
+        StringBuilder wifen = new StringBuilder();
+        sc.next();
+        for (int i = 0; i < count; i++) {
+            System.out.println("Enter the " + (i + 1) + " wife name");
+            wifen.append(sc.nextLine());
+            // wifen.append("+");
+            // sc.next();
+            // String wifeName= sc.next();
+            // rootName += " + " + wifen;
         }
+        wifename = wifen.toString();
+        // sc.next();
 
         Queue<Node> qu = new LinkedList<>();
         Node root = new Node(rootName);
@@ -39,12 +69,12 @@ public class RamayanTreeUserInput {
             for (int i = 0; i < numChildren; i++) {
                 System.out.println("Enter the name of " + (i + 1) + "th child of " + cNode.name);
                 String childName = sc.next();
-                System.out.println("How many wife does "+childName+" have ?");
-                int wifeCount=sc.nextInt();
-                for(int j=0;j<wifeCount;j++){
-                    System.out.println("Enter the name of "+(j+1)+" wife.");
-                    String wifeName=sc.next();
-                    childName+=" + "+ wifeName;
+                System.out.println("How many wife does " + childName + " have ?");
+                int wifeCount = sc.nextInt();
+                for (int j = 0; j < wifeCount; j++) {
+                    System.out.println("Enter the name of " + (j + 1) + " wife.");
+                    String wifeName = sc.next();
+                    childName += " + " + wifeName;
                 }
                 Node child = new Node(childName);
                 cNode.children.add(child);

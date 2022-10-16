@@ -47,6 +47,7 @@ public class BinaryTreePreorder {
             return;
         }
         Stack<Node> st = new Stack<>();
+        //Queue<Node> st = new LinkedList<>();
         st.push(root);
         while (!st.isEmpty()) {
             Node curNode = st.peek();
@@ -59,6 +60,26 @@ public class BinaryTreePreorder {
 
             if (curNode.left != null) {
                 st.push(curNode.left);
+            }
+        }
+    }
+
+    public void preorderIterativeQu(Node root) {
+        if (root == null) {
+            return;
+        }
+        Queue<Node> qu = new LinkedList<>();
+        qu.add(root);
+        while (!qu.isEmpty()) {
+            Node curNode = qu.peek();
+            System.out.print(curNode.data + " ");
+            qu.remove();
+        
+            if (curNode.left != null) {
+                qu.add(curNode.left);
+            }
+            if (curNode.right != null) {
+                qu.add(curNode.right);
             }
         }
     }
@@ -307,5 +328,8 @@ public class BinaryTreePreorder {
         tree.inOrder(root);
         System.out.println();
         tree.postOrderIteraiveUsing2stack(root);
+        System.out.println();
+        tree.preorderIterative(root);
+        tree.preorderIterativeQu(root);
     }
 }
