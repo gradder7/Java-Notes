@@ -59,6 +59,7 @@ public class prePostInorder {
                 }
             }
             // in order-> state ++ goto right-> in,s++,right
+            
             else if (top.state == 2) {
                 inorder += top.node.data + " ";
                 top.state++;

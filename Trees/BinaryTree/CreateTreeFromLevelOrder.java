@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class CreateTreeFromLevelOrder {
     
-class Node {
+static class Node {
     int data;
     Node left;
     Node right;
@@ -30,9 +30,18 @@ class Node {
         }
         return root;
     }
+    public static void printTreePreOrder(Node root){
+        if (root==null){
+            return;
+        }
+        System.out.print(root.data+" ");
+        printTreePreOrder(root.left);
+        printTreePreOrder(root.right);
+    }
 
     public static void main(String[] args) {
         // Your code here
+        // sample input->10 20 30 40 50 60
         Scanner sc = new Scanner(System.in);
         ArrayList<Integer> LIST = new ArrayList<Integer>();
         while (sc.hasNextInt()) {
@@ -40,8 +49,10 @@ class Node {
             LIST.add(i);
         }
         Node root = insertLevelOrder(LIST.toArray(new Integer[LIST.size()]), 0);
-        System.out.println(root);
-
+        // System.out.println(root.data);
+        printTreePreOrder(root);
     }
+
+
 
 }
