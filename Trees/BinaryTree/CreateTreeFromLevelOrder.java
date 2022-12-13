@@ -52,7 +52,4 @@ static class Node {
         // System.out.println(root.data);
         printTreePreOrder(root);
     }
-
-
-
 }
